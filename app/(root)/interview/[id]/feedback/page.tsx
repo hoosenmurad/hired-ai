@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { getCurrentUser } from "@/lib/actions/auth.action";
 
 const Feedback = async ({ params }: RouteParams) => {
-  const { id } = await params;
+  const { id } = params;
   const user = await getCurrentUser();
 
   const interview = await getInterviewById(id);
