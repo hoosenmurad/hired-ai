@@ -9,8 +9,8 @@ const Page = async () => {
       <h3>Interview generation</h3>
 
       <Agent
-        userName={user?.name!}
-        userId={user?.id}
+        userName={user?.name || "Default Name"}
+        userId={user?.id || "Default ID"}
         profileImage={user?.profileURL}
         type="generate"
       />
