@@ -3,6 +3,7 @@ import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import InterviewCard from "@/components/InterviewCard";
+import InterviewForm from "../../components/InterviewForm";
 
 import { getCurrentUser } from "@/lib/actions/auth.action";
 import {
@@ -47,6 +48,8 @@ async function Home() {
           className="max-sm:hidden"
         />
       </section>
+
+      <InterviewForm />
 
       <section className="flex flex-col gap-6 mt-8">
         <h2>Your Interviews</h2>
