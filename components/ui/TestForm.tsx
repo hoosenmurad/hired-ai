@@ -23,6 +23,8 @@ import {
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, X } from "lucide-react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/firebase/client";
 
 interface InterviewFormState {
   type: string;
@@ -48,36 +50,15 @@ export default function InterviewForm() {
   const [currentSkillInput, setCurrentSkillInput] = useState("");
 
   useEffect(() => {
-    const fetchUserId = async () => {
-      try {
-        const res = await fetch(""); // Replace with your actual endpoint
-        if (!res.ok) {
-          let errorMsg = `Failed to fetch user ID: ${res.statusText}`;
-          try {
-            const errorData = await res.json();
-            if (errorData && errorData.message) errorMsg = errorData.message;
-          } catch {
-            /* ignore */
-          }
-          console.error("User ID fetch error:", errorMsg);
-          toast.error("Could not retrieve user information.");
-          return;
-        }
-        const data = await res.json();
-        if (data && data.userid) {
-          setForm((prev) => ({ ...prev, userid: data.userid }));
-        } else {
-          console.warn("User ID not found in response data:", data);
-          toast.info(
-            "User session not found. Please ensure you are logged in."
-          );
-        }
-      } catch (err) {
-        console.error("Failed to fetch user ID:", err);
-        toast.error("An error occurred while fetching user data.");
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setForm((prev) => ({ ...prev, userid: user.uid }));
+      } else {
+        setForm((prev) => ({ ...prev, userid: "" }));
+        toast.info("User session not found. Please ensure you are logged in.");
       }
-    };
-    fetchUserId();
+    });
+    return () => unsubscribe();
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -180,7 +161,15 @@ export default function InterviewForm() {
         let errorMessage = `Error: ${response.statusText}`;
         try {
           const errorData = await response.json();
-          errorMessage = errorData.message || errorData.error || errorMessage;
+          if (errorData) {
+            if (typeof errorData.message === "string") {
+              errorMessage = errorData.message;
+            } else if (typeof errorData.error === "string") {
+              errorMessage = errorData.error;
+            } else {
+              errorMessage = JSON.stringify(errorData);
+            }
+          }
         } catch {
           /* ignore */
         }
