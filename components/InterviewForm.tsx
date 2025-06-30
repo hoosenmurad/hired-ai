@@ -193,7 +193,7 @@ export default function InterviewForm() {
 
   return (
     <div className="flex justify-center items-start md:items-center min-h-screen bg-background p-4 py-8 md:py-4">
-      <Card className="w-full max-w-lg">
+      <Card className="w-full max-w-xl">
         <CardHeader>
           <CardTitle className="text-2xl font-bold">
             Generate your interview
