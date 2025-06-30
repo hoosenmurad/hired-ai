@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Head from "next/head";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebase/client";
-import TestForm from "@/components/ui/TestForm";
+import TestForm from "@/components/TestForm";
 
 export default function TestFormPage() {
   const router = useRouter();

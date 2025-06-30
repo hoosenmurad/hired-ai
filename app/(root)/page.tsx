@@ -1,7 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-//import InterviewForm from "@/components/InterviewForm";
-import TestForm from "@/components/ui/TestForm";
 
 import { Button } from "@/components/ui/button";
 import InterviewCard from "@/components/InterviewCard";
@@ -49,8 +47,6 @@ async function Home() {
           className="max-sm:hidden"
         />
       </section>
-
-      <TestForm />
 
       <section className="flex flex-col gap-6 mt-8">
         <h2>Your Interviews</h2>
