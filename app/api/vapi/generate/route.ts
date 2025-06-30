@@ -14,7 +14,7 @@ export async function POST(request: Request) {
       prompt: `Prepare questions for a job interview.
         The job role is ${role}.
         The job experience level is ${level}.
-        The tech stack used in the job is: ${specialtySkills}.
+        Skills used in the job are: ${specialtySkills}.
         The focus between behavioural and technical questions should lean towards: ${type}.
         The amount of questions required is: ${amount}.
         Please return only the questions, without any additional text.
