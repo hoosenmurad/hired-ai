@@ -5,9 +5,9 @@ import { useRouter } from "next/navigation";
 import Head from "next/head";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebase/client";
-import TestForm from "@/components/TestForm";
+import InterviewForm from "@/components/InterviewForm";
 
-export default function TestFormPage() {
+export default function InterviewFormPage() {
   const router = useRouter();
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function TestFormPage() {
         />
       </Head>
       <div className="w-screen min-h-screen flex items-center justify-center bg-background p-4">
-        <TestForm />
+        <InterviewForm />
       </div>
     </>
   );
