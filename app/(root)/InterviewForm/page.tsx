@@ -29,7 +29,7 @@ export default function InterviewFormPage() {
           content="Generate AI-powered interviews tailored to your role and skills."
         />
       </Head>
-      <div className="w-screen min-h-screen flex items-center justify-center bg-background p-4">
+      <div className="w-screen items-center bg-background p-4">
         <InterviewForm />
       </div>
     </>
